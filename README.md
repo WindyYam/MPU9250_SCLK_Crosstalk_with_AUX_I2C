@@ -1,1 +1,3 @@
 # MPU9250_SCLK_Crosstalk_with_AUX_I2C
+For unknown reason, with long SCLK wire, it interference with AUX I2C signal. If you config MPU9250 with I2C master on to read AK8963 data with its ability, in the worst scene which happens a lot, the Aux I2C bus hang when there is an I2C read to AK8963 and a SPI/I2C host operation to MPU9250. This hang only happens when SCLK wire is long enough. The cause of which is still unknown. At least one guy encountered the same situation as me https://electronics.stackexchange.com/questions/298955/mpu9255-unreliable-ak8963-communications/298957
+Tried to pull up AUX SCL with 2k resistor not working. The only working solution for me at present is pull down AUX SCL with 1M resistor, which decreases the load impedance I think.
